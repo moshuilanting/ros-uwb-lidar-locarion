@@ -1,0 +1,37 @@
+# 1 "/home/jtl/my_catkin_ws/src/my_pcl_tutorial/.vscode/launch.json"
+# 1 "/home/jtl/my_catkin_ws/src/my_pcl_tutorial//"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 31 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 32 "<command-line>" 2
+# 1 "/home/jtl/my_catkin_ws/src/my_pcl_tutorial/.vscode/launch.json"
+{
+
+
+
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "g++ - 生成和调试活动文件",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtensiona}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: g++ build active file",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}

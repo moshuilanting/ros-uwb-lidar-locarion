@@ -1,0 +1,36 @@
+<launch>
+
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+  
+  <arg name="map_file" default="$(find launch)/maps/map.yaml"/>
+  <node pkg="map_server" name="map_server"  type="map_server" args="$(arg map_file)" />
+  
+
+
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>
+
+  <include file="$(find turtlebot3_navigation)/launch/move_base.launch">
+    <arg name="model" value="$(arg model)" />
+    <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+  </include>
+ 
+   
+  <node pkg="pozyx_simulation" name="pozyx_simulation"  type="uwb_simulation.py" output="screen">
+        <param name="modelstate_index" value="2" />
+  </node>
+
+  <include file="$(find pozyx_simulation)/launch/uwb_anchors_set.launch" />
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_navigation.rviz"/>
+  </group>
+  
+</launch>
